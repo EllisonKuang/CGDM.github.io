@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>CGDM</title>
+    <style type="text/css">
+        body{
+        	background-color: white;
+        }
+        .links{
+        	text-decoration: none;
+        	color: #0066CC;
+        }
+        .p2{
+        	padding-top: 20px;
+        	font-size: 25px;
+        }
+        .p1{
+        	text-align:justify;
+        	text-justify:inter-ideograph;
+        }
+		
+		.left {
+			text-align: left;
+			border: 1px dotted black;
+			width: 50%;
+		}
+        a{
+        	font-family: Sans-serif;
+        }
+        p{
+        	font-family: Sans-serif;
+        }
+        ul{
+        	font-family: Sans-serif;
+        }
+    </style>
+</head>
+<body>
+	<div align="center" style="padding-top: 30px;">
+	<p style="font-size:35px;">Consistency Guided Diffusion Model with Neural Syntax <br>
+		for Perceptual Image Compression</p>
+
+	<a href="mailto:kuanghw@stu.pku.edu.cn" class="links">Haowei Kuang</a> <sup>1,2</sup> &nbsp; &nbsp;
+	<a href="mailto:myy12769@pku.edu.cn" class="links">Yiyang Ma</a> <sup>1</sup>&nbsp; &nbsp;
+	<a href="mailto:yangwh@pcl.ac.cn" class="links">Wenhan Yang</a> <sup>3</sup>&nbsp; &nbsp;
+	<a href="mailto:guozongming@pku.edu.cn" class="links">Zongming Guo</a> <sup>1,2</sup>&nbsp; &nbsp;
+	<a href="mailto:liujiaying@pku.edu.cn" class="links">Jiaying Liu</a> <sup>1</sup>
+
+	<br>
+	<p class="para-3"><span class="p1"><sup>1</sup> Wangxuan Institute of Computer Technology, Peking University</span></p>
+		<p class="para-3"><span class="p1"><sup>2</sup> State Key Laboratory of Multimedia Information Processing, Peking University</span></p>
+		<p class="para-3"><span class="p1"><sup>3</sup> Pengcheng Laboratory</span></p>
+
+		<p class="para-3"><span class="p1"> <i>Accepted by ACM MM</i> 2024.</span></p>
+
+	</div>
+
+	<div align="left" style="padding-left: 15%; padding-right: 15%; padding-bottom: 30px;">
+
+		<p class='p2'> Abstract </p> 
+		<p class='p1'>Diffusion models show impressive performances in image generation with excellent perceptual quality. However, its tendency to
+			introduce additional distortion prevents its direct application in
+			image compression. To address the issue, this paper introduces
+			a Consistency Guided Diffusion Model (CGDM) tailored for perceptual image compression, which integrates an end-to-end image
+			compression model with a diffusion-based post-processing network,
+			aiming to learn richer detail representations with less fidelity loss. In
+			detail, the compression and post-processing networks are cascaded
+			and a branch of consistency guided features is added to constrain
+			the deviation in the diffusion process for better reconstruction quality. Furthermore, a Syntax driven Feature Fusion (SFF) module is
+			constructed to take an extra ultra-low bitstream from the encoding
+			end as input, guiding the adaptive fusion of information from the
+			two branches. In addition, we design a globally uniform boundary
+			control strategy with overlapped patches and adopt a continuous
+			online optimization mode to improve both coding efficiency and
+			global consistency. Extensive experiments validate the superiority
+			of our method to existing perceptual compression techniques and
+			the effectiveness of each component in our method.</p>
+
+		<p class='p2'> Method </p> 
+
+		<div align="center">
+			<img src="Image/arch.png" width="95%">
+		</div>
+		<p class='p1'>Figure 1. The entire framework of our proposed method. For an image 𝑥 to be encoded, we first perform lossy compression using
+			a standard end-to-end image compression network, resulting in an output degraded image 𝑥<sup>~</sup>. Then, we extract a syntax vector
+			from the original image 𝑥 using a syntax generator. This syntax vector is then used to guide the fusion of consistency features 𝑒
+			and diffusion features 𝑑 in a Consistency Guided Diffusion Model with Neural Syntax. After a complete diffusion process, we
+			obtain a higher-quality reconstructed image 𝑥<sub>0</sub>. The consistent guidance architecture, neural syntax driven mechanism lead the
+			diffusion model to stably reconstruct high-quality images, making the final output excellent in terms of perception and fidelity.</p>
+
+
+		<p class='p2'> Results </p>
+
+		<div align="center">
+			<img src="Image/rd-curve.png" width="95%">
+		</div>
+		<p class='p1'>Figure 2. Tradeoffs between bitrate (x-axes, in bpp) and different metrics (y-axes) for various models tested on Kodak and CLIC. We consider both perceptual (LPIPS, DISTS, FID) and distortion metrics (PSNR, VIF, MS-SSIM). The upper 2 rows (black frame) are the performance on Kodak datasets and the lower 2 rows (blue frame) are on CLIC professional dataset.</p>
+
+		<div align="center">
+			<img src="Image/subject.png" width="80%">
+		</div>
+		<p class='p1'>Figure 3. Visual comparisons with state-of-the-art methods on Kodak dataset. As can be seen, compared to the baseline used in our method (ILLM), we achieve a significant improvement in subjective performance at the cost of extremely low additional bitstreams.</p>
+
+		<div align="center">
+			<img src="Image/subject2.png" width="100%">
+		</div>
+		<p class='p1'>Figure 4. Visual comparisons with state-of-the-art methods on CLIC and DIV2K dataset.</p>
+
+		<br>
+		
+		<p class='p2'> Resources </p> 
+		<p class='p1'>
+			<ul style="line-height:15px">
+			　　<li> Paper: <a href="https://openreview.net/forum?id=nSUMQhITdd" class="links">Openreview</a> </li>
+
+			　　<li> Code: <a href="https://github.com/EllisonKuang/CGDM" class="links">Github</a> </li>
+			</ul>
+		</p>
+
+		<p class='p2'> Citation</p>
+		<p>
+			@inproceedings{<br>
+			kuang2024consistency,<br>
+			title={Consistency Guided Diffusion Model with Neural Syntax for Perceptual Image Compression},<br>
+			author={Haowei Kuang and Yiyang Ma and Wenhan Yang and Zongming Guo and Jiaying Liu},<br>
+			booktitle={ACM Multimedia 2024},<br>
+			year={2024},<br>
+			url={https://openreview.net/forum?id=nSUMQhITdd}<br>
+			}
+		</p>
+		
+		<p class='left'>
+			<ul style="line-height:15px">
+			    Return to <a href="http://39.96.165.147/Projects.html" class="links">STRUCT Project.</a>
+			</ul>
+		</p>
+
+</html>
